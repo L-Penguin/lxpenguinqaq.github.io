@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>超宽文本替换为省略号</title>
+	<style>
+	    .div_single {
+			height: 200px;
+	        /*width: 500px;*/
+	        border: 5px dotted blue;
+	        color: lightblue;
+	        overflow: hidden;
+	        text-overflow: ellipsis;
+	        white-space: nowrap;
+	    }
+	</style>
+</head>
+<body>
+	<div class="div_single">当我们在进行网页前端开发的时候，一般获取文章标题，然后一行一行的显示。但是当标题过长的时候，就会造成换行显示。还有显示部分文本信息时，如果全部显示就过于繁琐，会带来不会的网页体验感。虽然我们可以使用overflow:hidden将超过宽度的字符隐藏掉。但是结尾看起来总会让人觉得有点僵硬。而且也不利于让用户知道后面还有没显示完的字符。最好的方法，就是将多余的字符用省略号来代替。</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片放大</title>
+    <style>
+        .imgs_container img {
+            height: 200px;
+            width: 300px;
+        }
+        .img_plus img{
+            height: 400px;
+            width: 600px;
+        }
+        .img_plus {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="imgs_container">
+        <img src="images/apples.jpg" alt="">
+        <img src="images/bananas.jpg" alt="">
+        <img src="images/balloons.jpg" alt="">
+    </div>
+    <div class="img_plus"></div>
+    <script>
+        const imgs = document.querySelectorAll(".imgs_container img");
+        const img_plus = document.querySelector(".img_plus");
+        const imgs_container = document.querySelector(".imgs_container");
+
+        for (let i in imgs) {
+            imgs[i].onmouseenter = function(e) {
+                img_plus.innerHTML = `<img src="${this.src}" alt="">`
+            }
+            imgs[i].onmouseleave = function() {
+                img_plus.innerHTML = ``
+            }
+            imgs_container.onmousemove = function(event) {
+                img_plus.style.top = event.clientY + 10 + 'px';
+                img_plus.style.left = event.clientX + 10 + 'px';
+            }
+        }
+    </script>
+</body>
+</html>

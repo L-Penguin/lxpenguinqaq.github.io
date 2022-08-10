@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script src="手写35-旋转矩阵.js"></script>
+    <style>
+        table.game {
+        font-size: 14px;
+        border-collapse: collapse;
+        width: 100%;
+        table-layout: fixed;
+        }
+        table.game td {
+            border: 1px solid #e1e1e1;
+            padding: 0;
+            height: 30px;
+            text-align: center;
+        }
+        table.game td.current{
+            background: #1890ff;
+        }
+        table.game td.wrap{
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div id="jsContainer">
+        <table class="game">
+            <tbody>
+                <tr><td></td><td></td><td></td><td></td><td class="wrap"></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td class="wrap"></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td class="wrap"></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td class="wrap"></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td class="wrap"></td><td class="wrap"></td><td class="wrap"></td><td class="wrap"></td><td class="current"></td><td class="wrap"></td><td class="wrap"></td><td class="wrap"></td><td class="wrap"></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td class="wrap"></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td class="wrap"></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td class="wrap"></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td class="wrap"></td><td></td><td></td><td></td><td></td></tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const dom_arr = document.querySelectorAll("td");
+        const dom_table = [];
+        dom_arr.forEach((dom, index)=> {
+            if (index % 9 === 0) {
+                dom_table.push([])
+            }
+            dom_table[dom_table.length-1].push(dom);
+        })
+        for (let i=0; i<dom_table.length; i++) {
+            for (let j=0; j<dom_table[0].length; j++) {
+                dom_table[i][j].onclick = function(event) {
+                    const pre_center = document.querySelector(".current");
+                    pre_center.removeAttribute("class");
+                    const pre_bound = document.querySelectorAll(".wrap");
+                    pre_bound.forEach(item=> {
+                        item.removeAttribute("class");
+                    })
+                    for (let j=0; j<dom_table[0].length; j++) {
+                        dom_table[i][j].setAttribute("class", "wrap");
+                    }
+                    for (let i=0; i<dom_table.length; i++) {
+                        dom_table[i][j].setAttribute("class", "wrap");
+                    }
+                    event.target.setAttribute("class", "current");
+                }
+            }
+        }
+    </script>
+</body>
+</html>

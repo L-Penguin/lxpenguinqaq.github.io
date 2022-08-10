@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>get请求页面</title>
+</head>
+<body>
+    <h2>这是get请求得到的页面</h2>
+    {% if queryData !== '{}' %}
+        <p>接收到的query数据{{queryData}}</p>
+    {% endif %}
+    {% if postData !== '{}' %}
+        <p>接收到的post数据{{postData}}</p>
+    {% endif %}
+    {% if paramsData !== '{}' %}
+        <p>接收到的params数据{{paramsData}}</p>
+    {% endif %}
+</body>
+</html>

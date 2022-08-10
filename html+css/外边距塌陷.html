@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>外边距塌陷</title>
+	<style>
+		.div_3 {
+			height: 100px;
+			width: 400px;
+			background: red;
+		}
+		.div_1 {
+			height: 100px;
+			width: 400px;
+			background: lightblue;
+			text-align: center;
+			margin-top: 10px;
+		}
+		.div_2 {
+			height: 20px;
+			width: 400px;
+			background: lightgrey;
+			text-align: center;
+			display: inline-block;
+			margin-top: 20px; 
+		}
+	</style>
+</head>
+<body>
+	<div class="div_3">元素C</div>
+	<div class="div_1">
+		<div class="div_2">元素B</div>
+	</div>
+</body>
+</html>

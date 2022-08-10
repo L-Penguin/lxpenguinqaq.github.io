@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js防抖</title>
+    <style>
+        button {
+            width: 400px;
+            height: 100px;
+            background-color: aquamarine;
+            position: relative;
+            left: 50%;
+            top: 200px;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <button>剁手按钮</button>
+    <script>
+        /* 防抖：通过setTimeout的方式，在一定的时间间隔内，将多次触发变成一次触发 */
+        const button = document.querySelector('button');
+
+        function payMoney(event) {
+            console.log("已剁！");
+            console.log(this, event);
+        }
+
+        function debounce(func, delay, triggleNow) {
+            let timer = null;
+            return function() {
+                if (timer) {
+                    clearTimeout(timer);
+                }
+
+                if (triggleNow) {
+                    // 如果延时内多次点击，由于timer存在(true)，所以fistClick为false
+                    var firstClick = !timer;
+                    if (firstClick) {
+                        func.apply(this, arguments);
+                    }
+                    
+                    // 延时内多次点击，timer将会清除而不会设置为null。
+                    timer = setTimeout(()=> {
+                        timer = null;
+                    }, delay)
+                } else {
+                    timer = setTimeout(()=> {
+                        // apply，将参数传到函数，第一个参数是this，第二个参数是arguments
+                        func.apply(this, arguments);
+                    }, delay)
+                }
+            }
+        }
+        // debounce带参数所以直接执行，返回函数作为监听事件调用函数
+        button.addEventListener('click', debounce(payMoney, 1000, true));
+    </script>
+</body>
+</html>

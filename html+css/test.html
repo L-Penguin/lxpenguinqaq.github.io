@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style> 
+        .container {
+            width: 500px;
+            height: 2000px;
+            background-color: lightcoral;
+            margin: 0 auto;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .header {
+            background-color: aliceblue;
+            height: 100px;
+            margin: 25px 50px;
+            text-align: center;
+            line-height: 100px;
+            font-size: 50px;
+        }
+        .container > button {
+            display: inline-block;
+            position: sticky;
+            top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Header</div>
+        <button>sticky按钮</button>
+    </div>
+    <script>
+        let button = document.querySelector("button");
+        // button.attachEvent("onclick", ()=> {
+        //     console.log(1);
+        // })
+        const func = function() {
+            console.log(100)
+        }
+        button.addEventListener("click", ()=> {
+            console.log(1);
+        })
+        button.addEventListener("click", func)
+        button.removeEventListener("click", func)
+        button.onclick = ()=> {
+            console.log(3)
+        }
+    </script>
+</body>
+</html>

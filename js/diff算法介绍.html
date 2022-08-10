@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        /**
+         * diff算法的核心是操作虚拟DOM->既将DOM数据化操作； 
+         * 主流：snabbdom、virtual-dom
+         * 1、遍历老虚拟DOM
+         * 2、遍历新虚拟DOM
+         * 3、重新排序
+         * 优化：
+         *  只比较同一层级，不跨级比较；
+         *  标签名不同，直接删除，不继续深度比较
+         *  标签名相同，key相同，就认为是相同节点，不继续深度比较
+         * */
+        const box = document.getElementById("box");
+        // 1、直接操作DOM消耗时间 27.279052734375 ms
+        console.time("time_1");
+        for (let i=0; i<=10000; i++) {
+            box.innerHTML = i;
+        }
+        console.timeEnd("time_1");
+
+        // 2、数据化后操作 0.071044921875 ms
+        console.time("time_2");
+        let num = 0;
+        for (let i=0; i<=10000; i++) {
+            num = i;
+        }
+        box.innerHTML = num;
+        console.timeEnd("time_2");
+    </script>
+</body>
+</html>

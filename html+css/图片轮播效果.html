@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片轮播</title>
+    <style>
+        .swiper {
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        img {
+            width: 300px;
+            height: 200px;
+        }
+        .img_container {
+            width: 900px;
+            height: 200px;
+            display: flex;
+            transition: transform 0.7s;
+        }
+        .btn_container {
+            position:absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="swiper">
+        <div class="img_container">
+            <img src="images/apples.jpg" alt="">
+            <img src="images/balloons.jpg" alt="">
+            <img src="images/bananas.jpg" alt="">
+        </div>
+        <div class="btn_container">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+        </div>
+    </div>
+    <script>
+        let btns = document.querySelectorAll('button');
+        let imgs = document.querySelector(".img_container");
+        
+        for (let i in btns) {
+            btns[i].onclick = function() {
+                imgs.style.transform = `translateX(${-300 * i}px)`;
+            }
+        }
+    </script>
+</body>
+</html>

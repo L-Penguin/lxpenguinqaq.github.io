@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js节流</title>
+    <style>
+        button {
+            width: 400px;
+            height: 100px;
+            background-color: aquamarine;
+            position: relative;
+            left: 50%;
+            top: 200px;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <button>剁手按钮</button>
+    <script>
+        var btn = document.getElementsByTagName("button")[0];
+        
+        btn.addEventListener('click', throttle(payMoney, 2000), false);
+
+        function payMoney(event) {
+            console.log(this, event);
+            console.log("已剁！");
+        }
+
+        function throttle(func, delay) {
+            var begin = 0;
+            return function() {
+                let cur = new Date().getTime();
+                console.log(`点击时间间隔: ${cur-begin}ms`)
+
+                if (cur - begin > delay) {
+                    func.apply(this, arguments);
+                    begin = cur;
+                }
+            }
+        }
+
+        // function throttle(func, delay) {
+        //     let mark = true
+        //     return function() {
+        //         if (mark) {
+        //             setTimeout(()=> {
+        //                 func();
+        //                 mark = true;
+        //             }, delay)
+        //         }
+        //         mark = false;
+        //     }
+        // }
+    </script>
+</body>
+</html>

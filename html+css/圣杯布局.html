@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>圣杯布局</title>
+	<style>
+		/* 使用position */
+		body {
+			text-align:center; 
+			font-size: 50px; 
+			line-height:150px;
+		}
+		header, footer {
+			height: 150px;
+			background: pink;
+		}
+		.center {
+			background: red; 
+			width: 100%;
+		}
+		.left {
+			background: skyblue; 
+			width: 150px;
+			margin-left: -100%;
+			position: relative;
+			left: -150px;
+		}
+		.right {
+			background: lightgreen;
+			width: 150px;
+			margin-left: -150px;
+			position: relative;
+			right: -150px;
+		}
+		.center, .left, .right {
+			height: 500px;
+			float: left;
+		}
+		.clearfix::after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.wrapper {
+			padding: 0 150px;
+		}
+	</style>
+</head>
+<body>
+	<header>头部</header>
+	<div class="clearfix wrapper">
+		<div class="center">主区域</div>
+		<div class="left">左区域</div>
+		<div class="right">右区域</div>
+	</div>
+	<footer>底部</footer>
+</body>
+</html>

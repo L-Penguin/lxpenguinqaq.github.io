@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .container {
+            width: 1000px;
+            height: 2000px;
+            text-align: center;
+            background-color: aquamarine;
+            margin: 0 auto;
+        }
+        .sticky {
+            position: sticky;
+            bottom: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>sticky示例</h2>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <button class="sticky">sticky按钮</button>
+        <p>在阈值之内的时候，sticky表现为relative的形式</p>
+        <p>当超过阈值之后，sticky表现为fixed的形式</p>
+    </div>
+</body>
+</html>

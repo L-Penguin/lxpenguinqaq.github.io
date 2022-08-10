@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用table实现三栏布局</title>
+    <style>
+        .outer {
+            display: table;
+        }
+        .inner {
+            width: 200px;
+            height: 500px;
+            background-color: orange;
+        }
+        .mid {
+            display: table-cell;
+            width: 100%;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+   <div class="outer">
+       <div class="inner left"></div>
+       <div class="inner mid"></div>
+       <div class="inner right"></div>
+   </div> 
+</body>
+</html>
