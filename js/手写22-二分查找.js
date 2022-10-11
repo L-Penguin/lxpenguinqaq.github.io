@@ -1,5 +1,7 @@
+// 该函数讨论的是升序数组的查找方法
 function search(arr, target, start, end) {
     let targetIndex = -1;
+    // 升序使用Math.floor()，降序使用Math.ceil()
     let mid = Math.floor((start+end) / 2);
 
     if (arr[mid] === target) {
@@ -18,6 +20,6 @@ function search(arr, target, start, end) {
     }
 }
 
-let arr = [1, 3, 5, 7, 9, 11, 13];
-let index = search(arr, 2, 0, 6);
+let arr = [3, 1];
+let index = search(arr, 3, 0, 2);
 console.log(index);
