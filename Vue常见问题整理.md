@@ -227,6 +227,186 @@ Vue.directive("fbind", {
 })
 ```
 
+#### Vue内置指令
+
+##### 1、`v-on`
+
+> 说明：给元素绑定事件监听器
+>
+> 缩写：`@`
+> 参数：`event`
+> 修饰符：
+>
+> - `.stop`：调用`event.stopPropagation()`，阻止事件冒泡；
+> - `.prevent`：调用`event.preventDefault()`，阻止默认事件；
+> - `.capture`：在捕获模式添加事件监听器；
+> - `.self`：	只有事件从元素本身发出才触发处理函数，即事件不是从内部元素触发；
+> - `.{keyAlias}`：只在某些按键下触发处理函数；
+> - `.once`：最多触发一次处理函数；
+> - `.left`：只在鼠标左键事件触发处理函数；
+> - `.right`：只在鼠标右键事件触发触发处理函数；
+> - `.middle`：只在鼠标中键事件触发处理函数；
+> - `.passive`：通过`{ passive: true }`附加一个DOM事件，会执行默认方法；
+>   【浏览器只有等内核线程执行到事件监听器对应的JavaScript代码时，才能知道内部是否会调用preventDefault函数来阻止事件的默认行为，所以浏览器本身是没有办法对这种场景进行优化的。这种场景下，用户的手势事件无法快速产生，会导致页面无法快速执行滑动逻辑，从而让用户感觉到页面卡顿。】
+>
+> 例子：
+>
+> ```html
+> <!-- 方法处理函数 -->
+> <button v-on:click="doThis"></button>
+> 
+> <!-- 动态事件 -->
+> <button v-on:[event]="doThis"></button>
+> 
+> <!-- 内联声明，内联声明可以访问一个特殊的$event变量 -->
+> <button v-on:click="doThat('hello', $event)"></button>
+> 
+> <!-- 缩写 -->
+> <button @click="doThis"></button>
+> 
+> <!-- 使用缩写的动态事件 -->
+> <button @[event]="doThis"></button>
+> 
+> <!-- 停止传播 -->
+> <button @click.stop="doThis"></button>
+> 
+> <!-- 阻止默认事件 -->
+> <button @click.prevent="doThis"></button>
+> 
+> <!-- 不带表达式地阻止默认事件 -->
+> <form @submit.prevent></form>
+> 
+> <!-- 链式调用修饰符 -->
+> <button @click.stop.prevent="doThis"></button>
+> 
+> <!-- 按键用于 keyAlias 修饰符-->
+> <input @keyup.enter="onEnter" />
+> 
+> <!-- 点击事件将最多触发一次 -->
+> <button v-on:click.once="doThis"></button>
+> 
+> <!-- 对象语法，不支持任何修饰符 -->
+> <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
+> ```
+
+##### 2、`v-bind`
+
+> 说明：动态绑定一个或多个attribute，也可以是组件的prop
+>
+> 缩写：`:`或者`.`（当使用`.prop`修饰符）
+>
+> 修饰符：
+>
+> - `.camel`：将短横线命名的attribute转变为驼峰式命名；
+> - `.prop`：强制绑定为DOM property。3.2+
+> - `.attr`：强制绑定为DOM attribute.3.2+
+>
+> ```html
+> <!-- 绑定 attribute -->
+> <img v-bind:src="imageSrc" />
+> 
+> <!-- 动态 attribute 名 -->
+> <button v-bind:[key]="value"></button>
+> 
+> <!-- 缩写 -->
+> <img :src="imageSrc" />
+> 
+> <!-- 缩写形式的动态 attribute 名 -->
+> <button :[key]="value"></button>
+> 
+> <!-- 内联字符串拼接 -->
+> <img :src="'/path/to/images/' + fileName" />
+> 
+> <!-- class 绑定 -->
+> <div :class="{ red: isRed }"></div>
+> <div :class="[classA, classB]"></div>
+> <div :class="[classA, { classB: isB, classC: isC }]"></div>
+> 
+> <!-- style 绑定 -->
+> <div :style="{ fontSize: size + 'px' }"></div>
+> <div :style="[styleObjectA, styleObjectB]"></div>
+> 
+> <!-- 绑定对象形式的 attribute -->
+> <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
+> 
+> <!-- prop 绑定。“prop” 必须在子组件中已声明。 -->
+> <MyComponent :prop="someThing" />
+> 
+> <!-- 传递子父组件共有的 prop -->
+> <MyComponent v-bind="$props" />
+> 
+> <!-- XLink -->
+> <svg><a :xlink:special="foo"></a></svg>
+> ```
+
+##### 3、`v-if`
+
+> 说明：基于表达式的真假性，来条件性地渲染元素或者模板片段。
+>
+> 举例：
+>
+> ```html
+> <h2 v-if="isShow">哈哈哈哈</h2>
+> ```
+
+##### 4、`v-else`
+
+> 说明：表示`v-if`或`v-if`/`v-else-if`链式调用的"else块"
+>
+> 举例：
+>
+> ```html
+> <h2 v-if="isShow">Coder</h2>
+> <h2 v-else>Bin</h2>
+> ```
+
+##### 5、`v-else-if`
+
+> 说明：表示`v-if`的"else if"块。可以进行链式调用。
+>
+> 举例：
+>
+> ```html
+> <template id="my-app">
+>   <input type="text" v-model="score">
+>   <h2 v-if="score > 90">优秀</h2>
+>   <h2 v-else-if="score > 60">良好</h2>
+>   <h2 v-else>不及格</h2>
+> </template>
+> ```
+
+##### 6、`v-show`
+
+> 说明：基于表达式值的真假性，来改变元素的可见性。
+>
+> 详细描述：`v-show` 通过设置内联样式的 `display` CSS 属性来工作，当元素可见时将使用初始 `display` 值。当条件改变时，也会触发过渡效果。
+>
+> 举例：
+>
+> ```html
+>   <template id="my-app">
+>     <h2 v-show="isShow">哈哈哈哈</h2>
+>   </template>
+> 
+>   <script>
+>     const App = {
+>       template: '#my-app',
+>       data() {
+>         return {
+>           isShow: true
+>         }
+>       }
+>     }
+>     Vue.createApp(App).mount('#app');
+>   </script>
+> ```
+
+##### 7、`v-model`
+
+> 说明：在表单输入元素或组件上创建双向绑定
+
+
+
 
 
 ### vue2和vue3的响应式原理区别
